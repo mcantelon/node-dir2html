@@ -1,6 +1,25 @@
 node-directory-view
+-------------------
+
+Node-directory-view is a Javascript class that uses node.js to read a directory
+and render it to HTML.
+
+Directories can be set to be "closed" by default or "open". Children of "open"
+directories will be rendered.
+
+The example shows the use of a session variable (sessions implemented using
+another project) to toggle the "closed"/"open" states of individual
+directories.
+
+Install:
+# git clone http://github.com/mcantelon/node-directory-view.git
+# cd node-directory-view
+# git submodule update --init
+
+Run:
+# node example.js
 
 Tested with node.js v0.1.32-24-g84277ea
 
-(c) 2010 Mike Cantelon
+(c) 2010 Mike Cantelon, GPL license
 
