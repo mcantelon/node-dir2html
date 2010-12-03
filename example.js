@@ -1,15 +1,11 @@
 require('./src/node-directory-view')
 
 var sys = require('sys'),
-	http = require('http'),
 	url = require('url'),
 	path = require('path'),
 	fs = require('fs'),
-	Sessions = require('./nodejs-sessions/session')
-
-var SessionManager = new Sessions.manager({
-    lifetime: (60 * 60)
-})
+        connect = require('connect'),
+        MemoryStore = require('connect/middleware/session/memory')
 
 // static file handler for images
 function serve_static_file(response, filename) {
@@ -17,19 +13,24 @@ function serve_static_file(response, filename) {
 	fs.readFile(filename, 'binary', function(err, file) {
 
 		if (err) {  
-			response.sendHeader(500, {"Content-Type": "text/plain"})  
+			response.writeHead(500, {"Content-Type": "text/plain"})  
 			response.write(err + "\n")  
-			response.close()  
+			response.end()  
 			return  
 		}  
 
-		response.sendHeader(200)
+		response.writeHead(200)
 		response.write(file, 'binary')  
-		response.close()  
+		response.end()  
 	})  
 }
 
-http.createServer(function (request, response) {
+connect.createServer(
+
+  connect.cookieDecoder(),
+  connect.session({ store: new MemoryStore({ reapInterval: 60000 * 10 }) }),
+
+  function (request, response) {
 
 	var base_dir,
 		start_dir,
@@ -48,8 +49,7 @@ http.createServer(function (request, response) {
 	else {
 
 		// init session variable for directory state
-		session = SessionManager.lookupOrCreate(request, response)
-		var state = session.data('state')
+                var state = request.session.state
 		state = state || {}
 
 		// handle directory state change requests
@@ -71,20 +71,23 @@ http.createServer(function (request, response) {
 				path.exists(start_dir, function (exists) {
 					if (exists) {
 						query_data.dir = query_data.dir || ''
-						session.data('state', state)
-						response.sendHeader(200, {'Content-Type': 'text/html'})
+
+                                                request.session.state = state
+
+						response.writeHead(200, {'Content-Type': 'text/html'})
 						// the tag soup below is pretty gross... prolly need to have it use file/dir templates
-						var d2h = new DirectoryToHTML(base_dir, start_dir, {
+						var d2h = new DirToHTML(base_dir, start_dir, {
 							'parent_link_html': '<a href="/?dir={parent}">[Back]</a>&nbsp;',
 							'directory_prefix_html': '<a href="{script}?dir=' + query_data.dir + '&path={path}&toggle={entry}"><img src="/images/folder_{state}.png" border=0 /></a><img src="/images/folder_icon.png">&nbsp;<a href="/?dir={path}{entry}">',
 							'directory_suffix_html': '</a>',
 							'default_state': 'closed',
 							'initial_state': state
 						})
+
 						response.write('<html><head></head><body>')
 						response.write(d2h.parent_link_html() + d2h.as_html())
 						response.write('</body></html>')
-						response.close()
+						response.end()
 					}
 				})
 			}

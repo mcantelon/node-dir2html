@@ -2,11 +2,11 @@ var fs = require('fs'),
 	path = require('path'),
 	sys = require('sys')
 
-DirectoryToHTML = function(base_path, start_path, options) {
+DirToHTML = function(base_path, start_path, options) {
 	this.initialize(base_path, start_path, options)
 }
 
-DirectoryToHTML.prototype = {
+DirToHTML.prototype = {
 
 	initialize:function(base_path, start_path, options) {
 
