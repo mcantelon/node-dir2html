@@ -1,4 +1,4 @@
-require('./src/node-directory-view')
+require('./lib/node-directory-view')
 
 var sys = require('sys'),
 	url = require('url'),
