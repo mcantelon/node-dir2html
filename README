@@ -11,15 +11,18 @@ The example shows the use of a session variable (sessions implemented using
 another project) to toggle the "closed"/"open" states of individual
 directories.
 
+The example requires Connect for session support:
+
+  http://senchalabs.github.com/connect/
+
 Install:
 # git clone http://github.com/mcantelon/node-directory-view.git
 # cd node-directory-view
-# git submodule update --init
 
 Run:
 # node example.js
 
-Tested with node.js v0.1.32-24-g84277ea
+Tested with node.js v0.2.0
 
 (c) 2010 Mike Cantelon, GPL license
 
