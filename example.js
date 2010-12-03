@@ -1,6 +1,5 @@
-require('./lib/dir2html')
-
-var sys = require('sys'),
+var d2h = require('./lib/dir2html'),
+	sys = require('sys'),
 	url = require('url'),
 	path = require('path'),
 	fs = require('fs'),
@@ -55,7 +54,7 @@ connect.createServer(
 					response.writeHead(200, {'Content-Type': 'text/html'})
 
 					// the tag soup below is pretty gross... prolly need to have it use file/dir templates
-					var d2h = new DirToHTML(base_dir, start_dir, {
+					var dir = new d2h.DirToHTML(base_dir, start_dir, {
 						'parent_link_html': '<a href="/?dir={parent}">[Back]</a>&nbsp;',
 						'directory_prefix_html': '<a href="{script}?dir=' + query_data.dir + '&path={path}&toggle={entry}"><img src="/images/folder_{state}.png" border=0 /></a><img src="/images/folder_icon.png">&nbsp;<a href="/?dir={path}{entry}">',
 						'directory_suffix_html': '</a>',
@@ -64,7 +63,7 @@ connect.createServer(
 					})
 
 					response.write('<html><head></head><body>')
-					response.write(d2h.parent_link_html() + d2h.as_html())
+					response.write(dir.parent_link_html() + dir.as_html())
 					response.write('</body></html>')
 					response.end()
 				}
