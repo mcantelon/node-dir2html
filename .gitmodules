@@ -1,3 +1,0 @@
-[submodule "nodejs-sessions"]
-	path = nodejs-sessions
-	url = git://github.com/paulmars/node.js-sessions.git
