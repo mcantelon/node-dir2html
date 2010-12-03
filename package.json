@@ -1,0 +1,27 @@
+{
+    "name": "dir2html",
+    "version": "0.0.1",
+    "description": "Render a directory as HTML.",
+    "tags" : ["directory", "html"],
+    "author" : "Mike Cantelon <mcantelon@gmail.com>",
+    "contributors" : [],
+    "dependencies" : {},
+    "main": "./lib/dir2html",
+    "directories" : {
+        "lib": "./lib"
+    },
+    "repository": {
+        "type": "git",
+        "url" : "http://github.com/mcantelon/node-dir2html"
+    },
+    "engines": {
+      "node": ">= 0.2.0"
+    },
+    "bugs" : {
+        "web" : "http://github.com/mcantelon/node-dir2html/issues",
+    },
+    "licenses" : [{
+        "type" : "MIT",
+        "url" : "http://github.com/mcantelon/node-dir2html/LICENSE"
+    }]
+}
