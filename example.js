@@ -1,10 +1,10 @@
-var d2h = require('./lib/dir2html'),
-	sys = require('sys'),
-	url = require('url'),
-	path = require('path'),
-	fs = require('fs'),
-        connect = require('connect'),
-        MemoryStore = require('connect/middleware/session/memory')
+var d2h = require('./lib/dir2html')
+	, sys = require('sys')
+	, url = require('url')
+	, path = require('path')
+	, fs = require('fs')
+  , connect = require('connect')
+  , MemoryStore = require('connect/middleware/session/memory')
 
 connect.createServer(
 
@@ -14,12 +14,12 @@ connect.createServer(
 
   function (request, response) {
 
-	var base_dir,
-		start_dir,
-		url_data,
-		query_data,
-		session,
-		rel_path
+	var base_dir
+		, start_dir
+		, url_data
+		, query_data
+		, session
+		, rel_path
 
 	// get URL query parameters
 	url_data = url.parse(request.url, true)
