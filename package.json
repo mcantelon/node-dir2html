@@ -1,6 +1,6 @@
 {
     "name": "dir2html",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Render a directory as HTML.",
     "tags" : ["directory", "html"],
     "author" : "Mike Cantelon <mcantelon@gmail.com>",
