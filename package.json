@@ -18,7 +18,7 @@
       "node": ">= 0.2.0"
     },
     "bugs" : {
-        "web" : "http://github.com/mcantelon/node-dir2html/issues",
+        "web" : "http://github.com/mcantelon/node-dir2html/issues"
     },
     "licenses" : [{
         "type" : "MIT",
