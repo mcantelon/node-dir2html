@@ -1,5 +1,5 @@
 var d2h = require('./lib/dir2html')
-	, sys = require('sys')
+	, util = require('util')
 	, url = require('url')
 	, path = require('path')
 	, fs = require('fs')
@@ -73,4 +73,4 @@ connect.createServer(
   }
 ).listen(8000)
 
-sys.puts('Server running at http://127.0.0.1:8000/')
+util.puts('Server running at http://127.0.0.1:8000/')
