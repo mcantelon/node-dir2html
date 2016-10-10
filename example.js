@@ -43,9 +43,9 @@ connect.createServer(
 	  start_dir = (query_data.dir) ? base_dir + '/' + query_data.dir : base_dir
 
 	  // if base and start directories exist, show HTML representation of directories
-	  path.exists(base_dir, function (exists) {
+	  fs.exists(base_dir, function (exists) {
 		  if (exists) {
-			  path.exists(start_dir, function (exists) {
+			  fs.exists(start_dir, function (exists) {
 				  if (exists) {
 					  query_data.dir = query_data.dir || ''
 
